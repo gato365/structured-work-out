@@ -5,6 +5,9 @@ import pandas as pd
 
 
 
-## Test_1
-s = pd.Series([1, 3, 5, np.nan, 6, 8])
-print(s)
+## Test 1 Connection to Data Base
+weight_df = pd.read_csv('weight_df.csv')
+workout_df = pd.read_csv('workout_df.csv')
+
+## View Data Frame 
+print(weight_df)
