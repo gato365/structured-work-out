@@ -34,4 +34,4 @@ mod_1_workout_df = workout_df %>%
 
 
 write.csv(mod_1_workout_df,"workout_df.csv",row.names = FALSE)
-write.csv(weight, "weight_df.csv",row.names = FALSE)
+write.csv(weight_df, "weight_df.csv",row.names = FALSE)
