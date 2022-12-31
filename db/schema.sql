@@ -34,8 +34,12 @@ CREATE TABLE workout (
     weight INT,
     number_of_sets INT,
     number_of_reps INT,
-    FOREIGN KEY (muscle_group) REFERENCES exercise(muscle_group),
-    FOREIGN KEY (userid) REFERENCES user(userid)
+    PRIMARY KEY (id)
 );
+
+
+-- Foreign Key Issues
+-- FOREIGN KEY (muscle_group) REFERENCES exercise(muscle_group)
+-- FOREIGN KEY (userid) REFERENCES user(userid)
 
 -- Survey
