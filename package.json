@@ -21,6 +21,9 @@
   },
   "homepage": "https://github.com/gato365/structured-work-out#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.28.0"
   }
 }
