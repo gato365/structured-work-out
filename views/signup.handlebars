@@ -1,4 +1,4 @@
-<section class="hero has-background-grey is-fullheight">
+<section class="hero has-background-grey-dark is-fullheight">
   <div class="hero-body">
     <div class="container">
       <div class="columns is-centered">
@@ -9,19 +9,19 @@
               <div class="field">
                 <label class="label">Username</label>
                 <div class="control">
-                  <input type="email" placeholder="Enter Username" class="input" required>
+                  <input id="username_signup" type="email" placeholder="Enter Username" class="input" required>
                 </div>
               </div>
               <div class="field">
                 <label class="label">Email</label>
                 <div class="control">
-                  <input type="email" placeholder="Enter Email" class="input" required>
+                  <input id="email_signup" type="email" placeholder="Enter Email" class="input" required>
                 </div>
               </div>
               <div class="field">
                 <label class="label">Password</label>
                 <div class="control">
-                  <input type="password" placeholder="Enter Password" class="input" required>
+                  <input id="password_signup" type="password" placeholder="Enter Password" class="input" required>
                 </div>
               </div>
               <div class="field">
@@ -42,3 +42,33 @@
     </div>
   </div>
 </section>
+
+<script>
+   document.querySelector('#login_button').addEventListener('click', (event) => {
+    event.preventDefault();
+    let username = document.querySelector('#username_signup').value;
+    let email = document.querySelector('#email_signup').value;
+    let password = document.querySelector('#password_signup').value;
+    
+    console.log( email, password);
+    document.querySelector('#errors').textContent = '';
+    fetch('/api/user/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: email,
+        password,
+      }),
+    }).then((result) => {
+      if (!result.ok) {
+        document.querySelector('#errors').textContent = 'Incorrect Email or Password.';
+        return null;
+      } else {
+        return result.json();
+      }
+    })
+   });
+
+</script>

@@ -1,4 +1,4 @@
-<section class="hero has-background-grey is-fullheight">
+<section class="hero has-background-grey-dark is-fullheight">
   <div class="hero-body">
     <div class="container">
       <div class="columns is-centered">
@@ -7,14 +7,21 @@
           <form class="box has-background-grey-lighter">
             <div class="field">
               <label class="label">Email</label>
-              <div class="control">
+              <div class="control has-icons-left">
                 <input id="email_input" type="email" placeholder="Enter Email" class="input has-background-white-ter" required>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-envelope"></i>
+                </span>
               </div>
+              <div id="errors" class="has-text-danger"></div>
             </div>
             <div class="field">
               <label class="label">Password</label>
-              <div class="control">
+              <div class="control has-icons-left">
                 <input id="password_input" type="password" placeholder="Enter Password" class="input has-background-white-ter" required>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-lock"></i>
+                </span>
               </div>
             </div>
             <div class="field">
@@ -43,19 +50,24 @@
     let password = document.querySelector('#password_input').value;
     
     console.log( email, password);
-
+    document.querySelector('#errors').textContent = '';
     fetch('/api/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email,
+        username: email,
         password,
       }),
-    });
-
-
-   })
+    }).then((result) => {
+      if (!result.ok) {
+        document.querySelector('#errors').textContent = 'Incorrect Email or Password.';
+        return null;
+      } else {
+        return result.json();
+      }
+    })
+   });
 
 </script>
